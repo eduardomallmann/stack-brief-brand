@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stack Brief</title>
+<meta name="description" content="Stack Brief: vídeos de TI e treinamento técnico, com cara de telejornal técnico.">
+<meta name="theme-color" content="#2ec4b6">
+<meta property="og:site_name" content="Stack Brief">
+<meta property="og:title" content="Stack Brief">
+<meta property="og:description" content="TI e treinamento, com cara de telejornal técnico.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="img/og-image.png">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preload" href="fonts/ArchivoNarrow-Bold.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="fonts/ArchivoNarrow-SemiBold.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="fonts/IBMPlexMono-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Stack Brief","logo":"img/logo-escuro.png","description":"Vídeos de TI e treinamento técnico."}
+</script>
+<style>
+@font-face { font-family: "Archivo Narrow"; src: url("fonts/ArchivoNarrow-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Archivo Narrow"; src: url("fonts/ArchivoNarrow-SemiBold.ttf") format("truetype"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "IBM Plex Mono"; src: url("fonts/IBMPlexMono-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Space Mono"; src: url("fonts/SpaceMono-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+
+/* Paleta da marca. Turquesa é a marca; âmbar só aparece em alerta. */
+:root {
+  --primary: #2ec4b6;        /* turquesa: marca e conteúdo */
+  --secondary: #0f161d;      /* grafite: poços, barras, placas */
+  --accent: #e8b04b;         /* âmbar: só alerta */
+  --text: #f4f6f8;           /* texto principal */
+  --ink: #141013;            /* texto sobre chapas coloridas */
+  --scene: #1b232c;          /* chão da cena */
+  --muted: rgba(244, 246, 248, 0.6);
+  --line: rgba(255, 255, 255, 0.1);
+  --font-heading: "Archivo Narrow", "Arial Narrow", sans-serif;
+  --font-body: "Archivo Narrow", "Arial Narrow", sans-serif;
+  --font-caption: "IBM Plex Mono", ui-monospace, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--scene); color: var(--text);
+  font-family: var(--font-body); font-weight: 600; font-size: 20px; line-height: 1.45;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 48px 80px;
+  padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--font-heading); font-weight: 700; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(64px, 12vw, 128px); line-height: .92; }
+h2 { font-size: 26px; letter-spacing: 4.7px; text-transform: uppercase; color: var(--primary); margin-bottom: 20px; }
+p { margin: 0; max-width: 65ch; }
+.caption, code { font-family: var(--font-caption); font-weight: 400; font-size: 15px; letter-spacing: 1px; color: var(--muted); }
+header { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+header img.logo { height: 42px; width: auto; }
+.status { font-family: "Space Mono", ui-monospace, monospace; color: var(--muted); font-size: 18px; }
+.hero { display: grid; gap: 20px; padding-block: 72px 56px; border-bottom: 1px solid var(--line); }
+section { padding-block: 48px; border-bottom: 1px solid var(--line); display: grid; gap: 12px; }
+.swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; }
+.swatch { border: 1px solid var(--line); background: var(--secondary); }
+.swatch .chip { height: 96px; }
+.swatch div.meta { padding: 12px 14px; display: grid; gap: 2px; }
+.swatch strong { font-family: var(--font-heading); font-weight: 700; font-size: 20px; }
+.type { display: grid; gap: 22px; }
+.type .row { display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: 16px; align-items: baseline; }
+.t-display { font-family: var(--font-heading); font-weight: 700; font-size: 44px; line-height: 1.1; }
+.t-heading { font-family: var(--font-heading); font-weight: 700; font-size: 26px; letter-spacing: 4.7px; color: var(--primary); }
+.t-body { font-family: var(--font-body); font-weight: 600; font-size: 26px; }
+.t-caption { font-family: var(--font-caption); font-size: 24px; letter-spacing: 1.9px; color: var(--muted); }
+.lower { max-width: 870px; display: grid; gap: 4px; }
+.lower .h { font-family: var(--font-heading); font-weight: 700; font-size: clamp(26px, 4.4vw, 44px); line-height: 1.2; }
+.bar { display: flex; align-items: center; min-height: 48px; background: var(--secondary); border: 1px solid var(--line); overflow: hidden; white-space: nowrap; }
+.seal { align-self: stretch; display: flex; align-items: center; padding: 0 22px; font-family: var(--font-heading); font-weight: 700; font-size: 22px; letter-spacing: 3.1px; color: var(--ink); background: var(--primary); }
+.seal.alert { background: var(--accent); }
+.bar span.items { padding-left: 23px; font-family: var(--font-body); font-weight: 600; font-size: 22px; color: rgba(244, 246, 248, .86); }
+.bar i { font-style: normal; color: var(--primary); margin: 0 12px; }
+.plate { display: inline-grid; justify-items: end; padding: 14px 27px 14px 48px; background: var(--secondary); border: 1px solid rgba(255,255,255,.12); border-right: 3px solid var(--primary); }
+.plate b { font-family: var(--font-heading); font-weight: 700; font-size: 34px; line-height: 40px; }
+.plate span { font-family: var(--font-caption); font-size: 22px; letter-spacing: 1px; color: var(--primary); }
+.logos { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+.logos figure { margin: 0; padding: 24px; border: 1px solid var(--line); display: grid; gap: 10px; }
+.logos .light { background: var(--text); }
+.logos img { height: 56px; width: auto; display: block; }
+.logos img.mark { height: 96px; }
+footer { padding-top: 32px; }
+@media (max-width: 560px) { .type .row { grid-template-columns: 1fr; gap: 4px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <img class="logo" src="img/logo.png" alt="Stack Brief logo" width="454" height="84">
+  <span class="status">● MARCA · 2026</span>
+</header>
+
+<div class="hero">
+  <h1>Stack Brief</h1>
+  <p class="caption">TI e treinamento, com cara de telejornal técnico.</p>
+  <p>Vídeos curtos de tecnologia apresentados como um boletim: um apresentador, uma tela com o conteúdo e legendas secas que dizem onde você está e qual é a ideia da cena.</p>
+</div>
+
+<section id="logos">
+  <h2>Logotipo</h2>
+  <div class="logos">
+    <figure><img src="img/logo.png" alt="Stack Brief logo para fundo escuro" width="454" height="84"><figcaption class="caption">logo.png · fundo escuro</figcaption></figure>
+    <figure class="light"><img src="img/logo-escuro.png" alt="Stack Brief logo para fundo claro" width="454" height="84"></figure>
+    <figure><img class="mark" src="img/marca.png" alt="Stack Brief marca" width="512" height="512"><figcaption class="caption">marca.png</figcaption></figure>
+  </div>
+</section>
+
+<section id="cores">
+  <h2>Cores</h2>
+  <div class="swatches">
+    <div class="swatch"><div class="chip" style="background:#2ec4b6"></div><div class="meta"><strong>Turquesa</strong><code>#2EC4B6</code><span class="caption">Primária · marca e conteúdo</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#0f161d"></div><div class="meta"><strong>Grafite</strong><code>#0F161D</code><span class="caption">Secundária · poços e barras</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#e8b04b"></div><div class="meta"><strong>Âmbar</strong><code>#E8B04B</code><span class="caption">Acento · só alerta</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#f4f6f8"></div><div class="meta"><strong>Texto</strong><code>#F4F6F8</code><span class="caption">Texto principal</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#141013"></div><div class="meta"><strong>Tinta</strong><code>#141013</code><span class="caption">Texto sobre chapas</span></div></div>
+  </div>
+</section>
+
+<section id="tipografia">
+  <h2>Tipografia</h2>
+  <div class="type">
+    <div class="row"><span class="caption">Display · Archivo Narrow Bold</span><span class="t-display">REGISTRE OS HANDLERS ANTES DO CONNECT()</span></div>
+    <div class="row"><span class="caption">Título · Archivo Narrow Bold</span><span class="t-heading">PROTOCOLO · CICLO DE VIDA</span></div>
+    <div class="row"><span class="caption">Texto · Archivo Narrow SemiBold</span><span class="t-body">O host mostra uma tela interativa dentro da conversa.</span></div>
+    <div class="row"><span class="caption">Legenda · IBM Plex Mono</span><span class="t-caption">FONTE: SEP-1865</span></div>
+  </div>
+</section>
+
+<section id="componentes">
+  <h2>Legendas de cena</h2>
+  <div class="lower">
+    <span class="t-heading" style="font-size:20px">MCP APPS · O PROBLEMA</span>
+    <span class="h">QUANDO TUDO É TEXTO, CADA CLIQUE CUSTA</span>
+    <div class="bar"><span class="seal">CONCEITO</span><span class="items">LATÊNCIA A CADA CLIQUE<i>•</i>CONSUMO DE TOKENS</span></div>
+  </div>
+  <div class="lower" style="margin-top:20px">
+    <div class="bar"><span class="seal alert">ATENÇÃO</span><span class="items">ONTOOLRESULT<i>•</i>APP.CONNECT()</span></div>
+  </div>
+  <div style="margin-top:20px"><div class="plate"><b>INSTRUTOR</b><span>TRILHA MCP APPS</span></div></div>
+</section>
+
+<footer>
+  <p class="caption">Stack Brief · nome provisório · fontes Archivo Narrow, IBM Plex Mono e Space Mono sob a SIL Open Font License.</p>
+</footer>
+
+</div>
+</body>
+</html>
